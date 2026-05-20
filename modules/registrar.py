@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 from datetime import datetime
-from DataBase.connection import get_connection  # <-- CAMBIADO 'database' por 'DataBase'w
+from database.connection import get_connection
 
 def formulario_categoria():
     st.subheader("📂 Registro de Categorías Propias")

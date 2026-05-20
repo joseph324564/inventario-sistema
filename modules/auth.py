@@ -3,7 +3,7 @@ import re
 import pyotp
 import qrcode
 import io
-from DataBase.connection import get_connection  # <-- CAMBIADO 'database' por 'DataBase'
+from database.connection import get_connection
 
 def validar_password(password):
     if len(password) < 6: return False, "❌ Mínimo 6 caracteres."

@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 from datetime import datetime
-from DataBase.connection import get_connection  # <-- CAMBIADO 'database' por 'DataBase'
+from database.connection import get_connection
 
 def mostrar_notificaciones():
     st.header("🔔 Centro de Control de Alertas Próximas a Vencer")

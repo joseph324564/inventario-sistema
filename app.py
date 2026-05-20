@@ -1,9 +1,27 @@
+import sys
+import os
+
+# TRUCO DE INGENIERÍA: Forzar a Python a encontrar las carpetas en servidores Linux
+ruta_actual = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(ruta_actual)
+sys.path.append(os.path.join(ruta_actual, "modules"))
+sys.path.append(os.path.join(ruta_actual, "modulos"))
+sys.path.append(os.path.join(ruta_actual, "database"))
+
 import streamlit as st
 from database.connection import init_db
-from modules.auth import mostrar_login
-from modules.registrar import formulario_producto, formulario_categoria, formulario_proveedor, formulario_sede
-from modules.inventory import mostrar_inventario, gestionar_eliminacion
-from modules.notifications import mostrar_notificaciones # Nueva importación añadida
+
+# Control de importación flexible (por si tu carpeta se llama modules o modulos)
+try:
+    from modules.auth import mostrar_login
+    from modules.registrar import formulario_producto, formulario_categoria, formulario_proveedor, formulario_sede
+    from modules.inventory import mostrar_inventario, gestionar_eliminacion
+    from modules.notifications import mostrar_notificaciones
+except ModuleNotFoundError:
+    from modulos.auth import mostrar_login
+    from modulos.registrar import formulario_producto, formulario_categoria, formulario_proveedor, formulario_sede
+    from modulos.inventory import mostrar_inventario, gestionar_eliminacion
+    from modulos.notifications import mostrar_notificaciones
 
 st.set_page_config(page_title="Sistema Integral A3", page_icon="🛡️", layout="wide")
 
@@ -22,7 +40,7 @@ else:
     # Menú técnico actualizado con el módulo de notificaciones
     opcion = st.sidebar.selectbox("🎯 MENÚ TÉCNICO", [
         "📋 Ver mi Inventario",
-        "🔔 Centro de Notificaciones", # Nueva Opción
+        "🔔 Centro de Notificaciones", 
         "📝 Registrar Producto", 
         "➕ Crear Categoría", 
         "➕ Crear Proveedor", 
@@ -37,7 +55,7 @@ else:
 
     # Enrutador técnico
     if opcion == "📋 Ver mi Inventario": mostrar_inventario()
-    elif opcion == "🔔 Centro de Notificaciones": mostrar_notificaciones() # Ruta de ejecución
+    elif opcion == "🔔 Centro de Notificaciones": mostrar_notificaciones()
     elif opcion == "📝 Registrar Producto": formulario_producto()
     elif opcion == "➕ Crear Categoría": formulario_categoria()
     elif opcion == "➕ Crear Proveedor": formulario_proveedor()

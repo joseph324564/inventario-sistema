@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 from datetime import datetime
-from database.connection import get_connection
+from DataBase.connection import get_connection  # <-- CAMBIADO 'database' por 'DataBase'
 
 def mostrar_inventario():
     st.subheader("📋 Auditoría de Activos del Operador")

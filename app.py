@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-from DataBase.connection import init_db, get_connection
+from database.connection import init_db, get_connection
 from modules.auth import mostrar_login
 from modules.registrar import formulario_producto, formulario_categoria, formulario_proveedor, formulario_sede
 from modules.inventory import mostrar_inventario, gestionar_eliminacion
